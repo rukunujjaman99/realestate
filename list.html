@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMO | Premium Architectural Mastery</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --gold-dark: #a67c3d;
+            --bg-dark: #0a0a0a;
+            --bg-light: #f9f7f2; /* From Screenshot 10 */
+            --bg-card: #ffffff;
+            --text-main: #1a1a1a;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-light); color: var(--text-main); overflow-x: hidden; }
+        h1, h2, h3, h4, .playfair { font-family: 'Playfair Display', serif; }
+        .text-gold { color: var(--gold); }
+        .italic { font-style: italic; }
+
+        /* --- NAVIGATION --- */
+        .navbar { padding: 20px 0; transition: var(--transition); background: transparent; }
+        .navbar.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-link { color: #fff !important; font-weight: 500; font-size: 0.9rem; margin: 0 12px; }
+        .scrolled .nav-link { color: #333 !important; }
+        .btn-inquire { background: var(--gold); color: white !important; border-radius: 8px; padding: 10px 25px; font-weight: 600; }
+
+        /* --- HERO SECTION (Screenshot 9) --- */
+        .hero-main { height: 100vh; position: relative; background: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=2070') center/cover; color: white; display: flex; align-items: center; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8) 20%, transparent); }
+        .hero-content { position: relative; z-index: 10; max-width: 800px; padding-left: 5%; }
+        .hero-content h1 { font-size: 5.5rem; line-height: 1; margin: 20px 0; }
+        .btn-outline-white { border: 1px solid rgba(255,255,255,0.3); color: white; padding: 12px 30px; border-radius: 8px; background: rgba(255,255,255,0.05); }
+
+        /* --- PROJECT FILTERING (Screenshot 10) --- */
+        .filter-pill-box { background: white; border-radius: 50px; padding: 5px; display: inline-flex; border: 1px solid #eee; }
+        .filter-pill { padding: 10px 25px; border-radius: 50px; border: none; background: transparent; font-size: 0.9rem; transition: 0.3s; }
+        .filter-pill.active { background: #3d2b56; color: white; }
+        
+        .refine-box { background: white; border: 1px solid #eee; border-radius: 15px; padding: 25px; margin: 40px 0; }
+        .refine-select { border: 1px solid #ddd; padding: 12px; border-radius: 8px; width: 100%; font-size: 0.9rem; appearance: none; background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23999%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E') no-repeat right 15px center; }
+
+        /* --- PROJECT CARDS --- */
+        .proj-card { background: white; border-radius: 20px; overflow: hidden; transition: var(--transition); border: 1px solid #eee; }
+        .proj-img { height: 300px; position: relative; overflow: hidden; }
+        .proj-img img { width: 100%; height: 100%; object-fit: cover; }
+        .badge-status { position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; }
+
+        /* --- PROJECT DETAILS (Screenshot 11) --- */
+        .info-panel { border-radius: 20px; border: 1px solid #eee; padding: 30px; background: white; height: fit-content; }
+        .amenity-item { background: #fdfaf5; padding: 12px; border-radius: 8px; font-size: 0.9rem; display: flex; align-items: center; }
+        .amenity-item i { color: var(--gold); margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div style="background:var(--gold); width:35px; height:35px; display:grid; place-items:center; color:white; font-weight:bold; border-radius:5px;">D</div>
+                <span class="ms-2 fw-bold text-white fs-4" id="logoText">Domo.</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <a href="#contact" class="btn btn-inquire d-none d-lg-block">Inquire</a>
+        </div>
+    </nav>
+
+    <header class="hero-main">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h6 class="text-uppercase ls-3 animate__animated animate__fadeInDown" style="letter-spacing: 4px; font-weight: 600;">Featured Development</h6>
+            <h1 class="animate__animated animate__fadeInLeft">Architectural Mastery. <br><span class="text-gold italic">Enduring Value.</span></h1>
+            <p class="lead mb-5 opacity-75">Discover landmark residences crafted with vision, light and warmth.</p>
+            <div class="d-flex gap-3">
+                <button class="btn btn-inquire py-3 px-4">Explore Portfolio <i class="fas fa-arrow-right ms-2"></i></button>
+                <button class="btn btn-outline-white">Our Vision</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5" id="projects">
+        <div class="container py-5 text-center">
+            <h6 class="text-gold text-uppercase fw-bold">Curated Portfolio</h6>
+            <h2 class="display-4 fw-bold mt-2">Developments in <span class="text-gold italic">every chapter.</span></h2>
+            <p class="text-muted">From ground-breaking to handover — explore our projects across every stage.</p>
+
+            <div class="mt-4 filter-pill-box">
+                <button class="filter-pill active">All Stages <small class="ms-1 opacity-50">06</small></button>
+                <button class="filter-pill">Ongoing <small class="ms-1 opacity-50">02</small></button>
+                <button class="filter-pill">Upcoming <small class="ms-1 opacity-50">02</small></button>
+                <button class="filter-pill">Completed <small class="ms-1 opacity-50">02</small></button>
+            </div>
+
+            <div class="refine-box text-start">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fas fa-filter text-gold me-2"></i> <span class="fw-bold">Refine results</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-4"><select class="refine-select"><option>All Locations</option></select></div>
+                    <div class="col-md-4"><select class="refine-select"><option>All Project Stages</option></select></div>
+                    <div class="col-md-4"><select class="refine-select"><option>All Project Types</option></select></div>
+                </div>
+            </div>
+
+            <div class="row g-4 text-start">
+                <div class="col-md-4">
+                    <div class="proj-card">
+                        <div class="proj-img">
+                            <span class="badge-status">Ongoing</span>
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h6 class="text-muted small text-uppercase mb-1">Luxury Apartments</h6>
+                            <h4 class="fw-bold mb-3">The Lumina Residences</h4>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small">
+                                <span><i class="fas fa-map-marker-alt me-1 text-gold"></i> Banani, Dhaka</span>
+                                <span>2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Emberbrook Estate</h1>
+                    <h5 class="text-gold italic mb-4">Where dawn meets quiet luxury.</h5>
+                    
+                    <div class="row g-2 mb-5">
+                        <div class="col-4"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=800" class="img-fluid rounded-3" alt=""></div>
+                        <div class="col-4"><img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=800" class="img-fluid rounded-3" alt=""></div>
+                        <div class="col-4"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800" class="img-fluid rounded-3" alt=""></div>
+                    </div>
+
+                    <h3 class="fw-bold mb-4">Inside <span class="text-gold italic">Emberbrook Estate</span></h3>
+                    <p class="text-muted lead">This project showcases the pinnacle of sustainable architecture, featuring open-plan living and seamless integration with the surrounding natural landscape.</p>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="info-panel shadow-sm">
+                        <h4 class="fw-bold mb-4">Project Stats</h4>
+                        <ul class="list-unstyled mb-4">
+                            <li class="d-flex justify-content-between mb-2"><span>Type:</span> <strong>Villa</strong></li>
+                            <li class="d-flex justify-content-between mb-2"><span>Location:</span> <strong>Purbachal</strong></li>
+                            <li class="d-flex justify-content-between mb-2"><span>Year:</span> <strong>2026</strong></li>
+                        </ul>
+                        <h6 class="fw-bold mb-3">Amenities</h6>
+                        <div class="row g-2">
+                            <div class="col-6"><div class="amenity-item"><i class="fas fa-check"></i> Gym</div></div>
+                            <div class="col-6"><div class="amenity-item"><i class="fas fa-check"></i> Pool</div></div>
+                            <div class="col-6"><div class="amenity-item"><i class="fas fa-check"></i> Security</div></div>
+                            <div class="col-6"><div class="amenity-item"><i class="fas fa-check"></i> Park</div></div>
+                        </div>
+                        <button class="btn btn-inquire w-100 mt-4 py-3">Download Brochure</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5" style="background: #2a1b12; color: #8d7b6d;">
+        <div class="container text-center py-4">
+            <h2 class="text-white fw-bold">DOMO.</h2>
+            <p class="mt-3">© 2026 Domo Architectural Holdings. Crafted for visionary living.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('#mainNav').addClass('scrolled');
+                $('#logoText').addClass('text-dark');
+            } else {
+                $('#mainNav').removeClass('scrolled');
+                $('#logoText').removeClass('text-dark');
+            }
+        });
+    </script>
+</body>
+</html>

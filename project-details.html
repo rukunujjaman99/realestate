@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emberbrook Estate | Project Details</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --purple-accent: #3d2b56; /* From your Screenshot 10 */
+            --bg-light: #fdfaf5;
+            --dark: #121212;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-light); color: var(--dark); overflow-x: hidden; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+        /* --- HERO SECTION --- */
+        .project-hero {
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transform: scale(1.1);
+            transition: var(--transition);
+        }
+        .project-hero:hover .hero-img { transform: scale(1); }
+        
+        .hero-content-fixed {
+            position: absolute;
+            bottom: 60px;
+            left: 5%;
+            z-index: 10;
+            color: white;
+        }
+
+        /* --- INTERACTIVE STATS CARD --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 100px;
+        }
+
+        .stat-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stat-item:last-child { border: none; }
+        .stat-label { font-weight: 600; color: #888; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-value { font-weight: 700; color: var(--dark); }
+
+        /* --- AMENITY GRID --- */
+        .amenity-box {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            text-align: center;
+            height: 100%;
+        }
+        .amenity-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(197, 157, 95, 0.1);
+        }
+        .amenity-box i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- INTERACTIVE GALLERY --- */
+        .gallery-main {
+            height: 600px;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
+        .gallery-main:hover img { transform: scale(1.05); }
+
+        .tag-pill {
+            background: var(--purple-accent);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-premium {
+            background: var(--dark);
+            color: white;
+            border-radius: 12px;
+            padding: 18px 30px;
+            font-weight: 700;
+            width: 100%;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-premium:hover {
+            background: var(--purple-accent);
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="project-hero">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6199f7c096?q=80&w=2070" class="hero-img" alt="Emberbrook Estate">
+        <div class="hero-content-fixed">
+            <span class="tag-pill animate__animated animate__fadeInDown">Residential • Completed</span>
+            <h1 class="display-2 fw-bold mt-3 animate__animated animate__fadeInUp">Emberbrook <span class="italic serif">Estate.</span></h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s"><i class="fas fa-map-marker-alt text-gold me-2"></i> Purbachal, Sector 4, Dhaka</p>
+        </div>
+    </section>
+
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="mb-5">
+                    <h2 class="display-5 fw-bold mb-4">A Vision of <span class="text-gold italic">Quiet Luxury.</span></h2>
+                    <p class="lead text-muted" style="line-height: 1.8;">
+                        Emberbrook Estate is more than a residence; it is a landmark of architectural precision. Situated at the edge of Dhaka’s most promising expansion, this project integrates sustainable bamboo-infused concrete with expansive glass facades to invite the dawn into every living space.
+                    </p>
+                </div>
+
+                <div class="row g-3 mb-5">
+                    <div class="col-md-12">
+                        <div class="gallery-main shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=1000" alt="Interior">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gallery-main shadow-sm" style="height: 300px;">
+                            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1000" alt="Lobby">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gallery-main shadow-sm" style="height: 300px;">
+                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000" alt="Detail">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="fw-bold mb-4">World-Class <span class="text-gold">Amenities.</span></h3>
+                <div class="row g-4">
+                    <div class="col-6 col-md-3">
+                        <div class="amenity-box">
+                            <i class="fas fa-swimmer"></i>
+                            <h6 class="fw-bold">Infinity Pool</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="amenity-box">
+                            <i class="fas fa-dumbbell"></i>
+                            <h6 class="fw-bold">Smart Gym</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="amenity-box">
+                            <i class="fas fa-leaf"></i>
+                            <h6 class="fw-bold">Zen Garden</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="amenity-box">
+                            <i class="fas fa-car-battery"></i>
+                            <h6 class="fw-bold">EV Charging</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="glass-card shadow-lg">
+                    <h4 class="fw-bold mb-4">Project Overview</h4>
+                    
+                    <div class="stat-item">
+                        <span class="stat-label">Land Area</span>
+                        <span class="stat-value">4.5 Bighas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Units</span>
+                        <span class="stat-value">24 Penthouse Villas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Handover</span>
+                        <span class="stat-value">December 2026</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Developer</span>
+                        <span class="stat-value text-gold">Domo Holdings</span>
+                    </div>
+
+                    <div class="mt-5">
+                        <button class="btn-premium mb-3">
+                            <i class="fas fa-file-pdf"></i> Download Brochure
+                        </button>
+                        <button class="btn-premium" style="background: var(--gold);">
+                            <i class="fas fa-calendar-alt"></i> Book a Private Tour
+                        </button>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-top">
+                        <p class="small text-muted"><i class="fas fa-info-circle me-1"></i> Final few units available for Phase 1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-5 bg-white mt-5">
+        <div class="container text-center">
+            <h2 class="serif fw-bold">DOMO.</h2>
+            <div class="d-flex justify-content-center gap-4 mt-3">
+                <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-dark"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-img');
+            heroImg.style.transform = `scale(${1.1 - scroll/5000})`;
+        });
+    </script>
+</body>
+</html>

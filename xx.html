@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domo | Premium Architecture</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --dark-deep: #111111;
+            --soft-white: #fdfcf8;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--soft-white); color: #333; overflow-x: hidden; }
+        h1, h2, h3, h4, .playfair { font-family: 'Playfair Display', serif; }
+
+        /* --- STICKY NAVBAR --- */
+        .navbar { transition: var(--transition); padding: 25px 0; z-index: 1000; }
+        .navbar.sticky-nav { background: rgba(255, 255, 255, 0.98); padding: 12px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
+        .nav-link { color: #fff !important; font-weight: 500; margin: 0 15px; font-size: 0.9rem; }
+        .sticky-nav .nav-link { color: #111 !important; }
+        .sticky-nav #logo-text { color: #111 !important; }
+
+        /* --- HERO SLIDER --- */
+        .hero { height: 100vh; background: #000; position: relative; }
+        .carousel-item { height: 100vh; background-size: cover; background-position: center; }
+        .carousel-item::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        .hero-caption { position: absolute; top: 50%; transform: translateY(-50%); color: white; width: 100%; padding-left: 8%; z-index: 5; }
+        .hero-caption h1 { font-size: 5.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-caption h1 span { color: var(--gold); font-style: italic; }
+
+        /* --- REFINED PROJECT SECTION --- */
+        .project-section { padding: 100px 0; }
+        .refine-container {
+            background: #fff; padding: 30px; border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.03); margin-top: -60px;
+            position: relative; z-index: 100;
+        }
+        
+        .filter-btn {
+            border: 1px solid #eee; background: none; padding: 10px 22px;
+            border-radius: 30px; color: #777; font-weight: 600; margin: 5px;
+            transition: var(--transition); font-size: 0.85rem;
+        }
+        .filter-btn.active { background: #2d1b4d; color: #fff; border-color: #2d1b4d; }
+        
+        .search-box { border: 1px solid #eee; padding: 10px 20px; border-radius: 30px; width: 100%; outline: none; background: #f9f9f9; }
+
+        /* Card Animations */
+        .grid-item { padding: 15px; transition: var(--transition); }
+        .project-card {
+            background: #fff; border-radius: 15px; overflow: hidden;
+            border: none; position: relative; transition: var(--transition);
+        }
+        .project-card:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .img-wrapper { height: 350px; overflow: hidden; position: relative; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .project-card:hover .img-wrapper img { transform: scale(1.1); }
+
+        .status-badge {
+            position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px); color: #fff; padding: 5px 15px; border-radius: 5px; font-size: 0.7rem;
+        }
+
+        /* --- TEAM & GALLERY --- */
+        .team-img-box { border-radius: 20px; overflow: hidden; height: 400px; position: relative; }
+        .team-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .team-social-overlay {
+            position: absolute; inset: 0; background: rgba(197, 157, 95, 0.8);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.4s;
+        }
+        .team-img-box:hover .team-social-overlay { opacity: 1; }
+
+        /* --- FOOTER --- */
+        footer { background: #0a0a0a; color: #777; padding: 80px 0 20px; }
+        .footer-logo { font-size: 2rem; color: #fff; font-weight: bold; }
+        footer a { color: #777; text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: var(--gold); }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div style="background:var(--gold); width:40px; height:40px; display:grid; place-items:center; color:white; font-weight:bold; border-radius:6px;">D</div>
+                <span class="ms-2 fw-bold text-white" id="logo-text">DOMO.</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-warning rounded-pill px-4 text-white fw-bold" style="background:var(--gold); border:none;">Inquire</button>
+        </div>
+    </nav>
+
+    <div id="heroSlider" class="carousel slide carousel-fade hero" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=2070');">
+                <div class="hero-caption">
+                    <p class="text-uppercase animate__animated animate__fadeInDown" style="letter-spacing: 4px; font-size: 0.8rem;">Featured Development</p>
+                    <h1 class="hero-title animate__animated animate__fadeInLeft">Architectural<br>Mastery.<br><span>Enduring Value.</span></h1>
+                    <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                        <button class="btn btn-warning p-3 px-5 text-white fw-bold" style="background:var(--gold); border:none;">Explore Portfolio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="project-section">
+        <div class="container">
+            <div class="refine-container row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap" id="filter-btns">
+                        <button class="filter-btn active" data-filter="*">All Stages</button>
+                        <button class="filter-btn" data-filter=".ongoing">Ongoing</button>
+                        <button class="filter-btn" data-filter=".upcoming">Upcoming</button>
+                        <button class="filter-btn" data-filter=".completed">Completed</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="position-relative">
+                        <input type="text" class="search-box" id="projectSearch" placeholder="Search projects...">
+                        <i class="fas fa-search position-absolute" style="right: 20px; top: 13px; color: #ccc;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 text-center mb-5">
+                <h2 class="display-4">Developments in <span class="fst-italic" style="color:var(--gold)">every chapter.</span></h2>
+            </div>
+
+            <div class="row grid mt-4">
+                <div class="col-md-4 grid-item ongoing">
+                    <div class="project-card">
+                        <div class="img-wrapper">
+                            <span class="status-badge">Ongoing</span>
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000" alt="Lumina">
+                            <div class="position-absolute bottom-0 p-4 text-white">
+                                <small class="text-uppercase">Luxury Apartments</small>
+                                <h4 class="playfair m-0">The Lumina Residences</h4>
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex justify-content-between border-top">
+                            <small><i class="fas fa-location-dot me-1"></i> Banani, Dhaka</small>
+                            <small class="fw-bold">2026</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-item upcoming">
+                    <div class="project-card">
+                        <div class="img-wrapper">
+                            <span class="status-badge">Upcoming</span>
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000" alt="Ember">
+                            <div class="position-absolute bottom-0 p-4 text-white">
+                                <small class="text-uppercase">Private Villas</small>
+                                <h4 class="playfair m-0">Emberbrook Estate</h4>
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex justify-content-between border-top">
+                            <small><i class="fas fa-location-dot me-1"></i> Purbachal, Dhaka</small>
+                            <small class="fw-bold">2027</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white">
+        <div class="container text-center">
+            <h2 class="mb-5 playfair display-5">Meet Our Experts</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="team-img-box">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000" alt="CEO">
+                        <div class="team-social-overlay">
+                            <i class="fab fa-linkedin fa-2x mx-3 text-white"></i>
+                            <i class="fab fa-twitter fa-2x mx-3 text-white"></i>
+                        </div>
+                    </div>
+                    <h5 class="mt-3 fw-bold">Marcus Thorne</h5>
+                    <p class="text-muted">Principal Architect</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row pb-5 border-bottom border-secondary">
+                <div class="col-lg-4">
+                    <div class="footer-logo mb-3">DOMO.</div>
+                    <p>Luxury architecture and urban development. Crafted for the future.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a href="#">Our Projects</a><br>
+                    <a href="#">The Process</a><br>
+                    <a href="#">Terms & Privacy</a>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <div class="d-flex">
+                        <input type="text" class="form-control bg-dark border-0 text-white" placeholder="Email Address">
+                        <button class="btn btn-warning ms-2" style="background:var(--gold); border:none;">Join</button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-4">© 2026 Domo Architecture. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Isotope Setup
+            var qsRegex;
+            var buttonFilter;
+            var $grid = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                layoutMode: 'fitRows',
+                filter: function() {
+                    var $this = $(this);
+                    var searchResult = qsRegex ? $this.text().match(qsRegex) : true;
+                    var buttonResult = buttonFilter ? $this.is(buttonFilter) : true;
+                    return searchResult && buttonResult;
+                }
+            });
+
+            // Filter Buttons
+            $('#filter-btns').on('click', 'button', function() {
+                buttonFilter = $(this).attr('data-filter');
+                $grid.isotope();
+                $('#filter-btns button').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Search Filter
+            $('#projectSearch').keyup(function() {
+                qsRegex = new RegExp($(this).val(), 'gi');
+                $grid.isotope();
+            });
+
+            // Sticky Nav
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#mainNav').addClass('sticky-nav');
+                    $('#logo-text').css('color', '#111');
+                } else {
+                    $('#mainNav').removeClass('sticky-nav');
+                    $('#logo-text').css('color', '#fff');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

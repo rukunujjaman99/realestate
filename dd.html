@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMO | Ultimate Architectural Edition</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --bg-dark: #080808;
+            --bg-card: #121212;
+            --text-light: #f4f4f4;
+            --text-dim: #b0b0b0;
+            --accent-glow: rgba(197, 157, 95, 0.3);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
+            overflow-x: hidden; 
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .playfair { font-family: 'Playfair Display', serif; color: #fff; }
+
+        /* --- STYLISH BUTTONS --- */
+        .btn-stylish {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 30px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        .btn-stylish::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: var(--gold);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        .btn-stylish:hover { color: #fff; }
+        .btn-stylish:hover::before { left: 0; }
+
+        /* --- NAVBAR --- */
+        .navbar { transition: var(--transition); padding: 25px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .navbar.sticky { background: rgba(8, 8, 8, 0.98); padding: 12px 0; border-bottom: 1px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .nav-link { color: #fff !important; font-weight: 600; font-size: 0.85rem; margin: 0 15px; }
+
+        /* --- HERO SLIDER --- */
+        .hero { height: 100vh; position: relative; }
+        .carousel-item { height: 100vh; background-size: cover; background-position: center; }
+        .carousel-item::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+        .hero-caption { position: absolute; top: 50%; transform: translateY(-50%); padding-left: 10%; z-index: 10; width: 80%; }
+        .hero-caption h1 { font-size: 6rem; line-height: 1; margin-bottom: 20px; font-weight: 700; }
+        .hero-caption h1 span { color: var(--gold); font-style: italic; }
+
+        /* --- SECTION HEADERS --- */
+        .section-header { margin-bottom: 60px; text-align: center; }
+        .section-header h5 { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.9rem; }
+        .section-header h2 { font-size: 3.5rem; margin-top: 10px; }
+
+        /* --- ABOUT (FIXED VISIBILITY) --- */
+        .about-img-container { position: relative; padding: 20px; }
+        .about-img-container img { width: 100%; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .experience-tag {
+            position: absolute; bottom: 0; right: 0;
+            background: var(--gold); color: #fff; padding: 30px;
+            border-radius: 5px; text-align: center;
+        }
+
+        /* --- PROJECT FILTERING --- */
+        .filter-wrap {
+            background: var(--bg-card); padding: 20px; border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1); display: inline-flex;
+            gap: 10px; margin-bottom: 40px;
+        }
+        .filter-btn {
+            background: transparent; border: none; color: var(--text-dim);
+            padding: 8px 25px; border-radius: 40px; font-weight: 600; transition: 0.3s;
+        }
+        .filter-btn.active { background: var(--gold); color: #fff; }
+
+        .project-card { 
+            background: var(--bg-card); border-radius: 15px; overflow: hidden; 
+            margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+        }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .img-box { height: 350px; overflow: hidden; position: relative; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .project-tag { position: absolute; top: 20px; left: 20px; background: var(--gold); font-size: 0.7rem; padding: 4px 12px; border-radius: 3px; font-weight: 700; }
+
+        /* --- REVIEWS (FIXED VISIBILITY) --- */
+        .review-box {
+            background: #181818; padding: 50px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05); position: relative;
+            margin: 15px;
+        }
+        .review-box p { font-size: 1.1rem; color: #ddd; font-style: italic; margin-bottom: 25px; }
+        .client-info h6 { color: var(--gold); margin-bottom: 0; font-weight: 700; }
+
+        /* --- BLOG --- */
+        .blog-item { margin-bottom: 30px; }
+        .blog-thumb { border-radius: 15px; overflow: hidden; height: 280px; margin-bottom: 20px; }
+        .blog-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .blog-item:hover img { transform: scale(1.1); }
+
+        /* --- SCROLL REVEAL --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero-caption h1 { font-size: 3rem; }
+            .section-header h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div style="background:var(--gold); width:40px; height:40px; display:grid; place-items:center; color:white; font-weight:bold; border-radius:4px;">D</div>
+                <span class="ms-2 fw-bold text-white fs-4">DOMO.</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">PROJECTS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">REVIEWS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">BLOG</a></li>
+                </ul>
+            </div>
+            <button class="btn-stylish">Inquire</button>
+        </div>
+    </nav>
+
+    <div id="heroSlider" class="carousel slide carousel-fade hero" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=2070');">
+                <div class="hero-caption">
+                    <p class="text-gold animate__animated animate__fadeInDown" style="letter-spacing: 5px; font-weight: 700;">PREMIUM DEVELOPMENTS</p>
+                    <h1 class="animate__animated animate__fadeInLeft">Defining <br><span>Modernity.</span></h1>
+                    <button class="btn-stylish animate__animated animate__fadeInUp">View Portfolio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-padding reveal" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-img-container">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="Building">
+                        <div class="experience-tag">
+                            <h2 class="m-0 fw-bold">25</h2>
+                            <p class="m-0 small text-uppercase fw-bold">Years of Success</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5 mt-5 mt-lg-0">
+                    <h5 class="text-gold fw-bold mb-3">WHO WE ARE</h5>
+                    <h2 class="display-5 mb-4">Crafting Icons in the <br>Urban Landscape.</h2>
+                    <p class="text-dim lead mb-4">We are more than architects; we are visionaries dedicated to creating high-performance environments that enhance human life.</p>
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <i class="fas fa-gem text-gold me-3 fs-3"></i>
+                            <span class="fw-bold">Luxury Design</span>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <i class="fas fa-leaf text-gold me-3 fs-3"></i>
+                            <span class="fw-bold">Eco-Friendly</span>
+                        </div>
+                    </div>
+                    <button class="btn-stylish">Our Journey</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-black text-center" id="projects">
+        <div class="container">
+            <div class="section-header reveal">
+                <h5>OUR PORTFOLIO</h5>
+                <h2>Recent Developments</h2>
+            </div>
+
+            <div class="filter-wrap reveal">
+                <button class="filter-btn active" data-filter="*">All</button>
+                <button class="filter-btn" data-filter=".ongoing">Ongoing</button>
+                <button class="filter-btn" data-filter=".upcoming">Upcoming</button>
+                <button class="filter-btn" data-filter=".completed">Completed</button>
+            </div>
+
+            <div class="row grid text-start">
+                <div class="col-md-4 grid-item ongoing reveal">
+                    <div class="project-card">
+                        <div class="img-box">
+                            <span class="project-tag">ONGOING</span>
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000" alt="Lumina">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="mb-1">Lumina Residences</h4>
+                            <p class="text-gold small mb-0"><i class="fas fa-location-dot me-1"></i> Dubai, Marina</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-item completed reveal">
+                    <div class="project-card">
+                        <div class="img-box">
+                            <span class="project-tag">COMPLETED</span>
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="Meridian">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="mb-1">The Meridian Tower</h4>
+                            <p class="text-gold small mb-0"><i class="fas fa-location-dot me-1"></i> New York, NY</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="reviews">
+        <div class="container">
+            <div class="section-header reveal">
+                <h5>CLIENT FEEDBACK</h5>
+                <h2>Trust From Global Partners</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 reveal">
+                    <div class="review-box">
+                        <i class="fas fa-quote-left text-gold mb-4 fs-1"></i>
+                        <p>"Domo's commitment to perfection and the ability to integrate modern technology into architectural art is truly remarkable."</p>
+                        <div class="client-info">
+                            <h6>Robert Harrison</h6>
+                            <small class="text-dim">Real Estate Director</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 reveal">
+                    <div class="review-box">
+                        <i class="fas fa-quote-left text-gold mb-4 fs-1"></i>
+                        <p>"The team delivered exactly what they promised—a landmark building that stands out in the city's skyline."</p>
+                        <div class="client-info">
+                            <h6>Elena Petrov</h6>
+                            <small class="text-dim">Private Investor</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-black" id="blog">
+        <div class="container">
+            <div class="section-header reveal">
+                <h5>LATEST INSIGHTS</h5>
+                <h2>From Our Blog</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 reveal">
+                    <div class="blog-item">
+                        <div class="blog-thumb">
+                            <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=800" alt="Post">
+                        </div>
+                        <h4 class="mb-3">Minimalism in 2026</h4>
+                        <a href="#" class="text-gold fw-bold text-decoration-none">READ MORE +</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 reveal">
+                    <div class="blog-item">
+                        <div class="blog-thumb">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6199f7c096?q=80&w=800" alt="Post">
+                        </div>
+                        <h4 class="mb-3">Sustainable Skyscrapers</h4>
+                        <a href="#" class="text-gold fw-bold text-decoration-none">READ MORE +</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 reveal">
+                    <div class="blog-item">
+                        <div class="blog-thumb">
+                            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800" alt="Post">
+                        </div>
+                        <h4 class="mb-3">Luxury Urban Living</h4>
+                        <a href="#" class="text-gold fw-bold text-decoration-none">READ MORE +</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 border-top border-secondary">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">DOMO.</h2>
+            <div class="mb-4">
+                <i class="fab fa-facebook mx-3 text-gold fs-4"></i>
+                <i class="fab fa-instagram mx-3 text-gold fs-4"></i>
+                <i class="fab fa-linkedin mx-3 text-gold fs-4"></i>
+            </div>
+            <p class="text-dim small">© 2026 Domo Architecture. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Isotope filtering
+            var $grid = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                layoutMode: 'fitRows'
+            });
+
+            $('.filter-btn').on('click', function() {
+                var filterValue = $(this).attr('data-filter');
+                $grid.isotope({ filter: filterValue });
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Scroll Reveal & Sticky Nav
+            $(window).on('scroll', function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#mainNav').addClass('sticky');
+                } else {
+                    $('#mainNav').removeClass('sticky');
+                }
+
+                $('.reveal').each(function() {
+                    var windowHeight = $(window).height();
+                    var revealTop = $(this).offset().top;
+                    var revealPoint = 100;
+                    if (revealTop < $(window).scrollTop() + windowHeight - revealPoint) {
+                        $(this).addClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

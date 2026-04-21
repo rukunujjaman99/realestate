@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domo | Premium Architecture & Development</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --dark: #111111;
+            --light: #f8f9fa;
+            --purple-deep: #2d1b4d;
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: #333; overflow-x: hidden; }
+        h1, h2, h3, h4, .playfair { font-family: 'Playfair Display', serif; }
+        .btn-gold { background: var(--gold); color: white; border: none; padding: 12px 30px; transition: 0.3s; }
+        .btn-gold:hover { background: #b08b52; transform: translateY(-3px); }
+
+        /* --- Navbar --- */
+        .navbar { transition: 0.4s; padding: 25px 0; }
+        .navbar.sticky { background: white; padding: 10px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .navbar.sticky .nav-link { color: #111 !important; }
+        .nav-link { color: #fff !important; font-weight: 500; margin: 0 15px; }
+
+        /* --- Hero Slider --- */
+        .hero { height: 100vh; position: relative; }
+        .carousel-item { height: 100vh; background-size: cover; background-position: center; }
+        .carousel-item::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        .hero-caption { position: absolute; top: 50%; transform: translateY(-50%); color: white; width: 100%; padding-left: 8%; }
+        .hero-caption h1 { font-size: 5rem; margin-bottom: 20px; }
+        .hero-caption h1 span { color: var(--gold); }
+
+        /* --- Sections --- */
+        section { padding: 100px 0; }
+        .section-title { margin-bottom: 60px; }
+        .section-title h2 { font-size: 3rem; position: relative; display: inline-block; }
+        .section-title p { color: var(--gold); text-uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 600; }
+
+        /* --- Project Card & List Animation --- */
+        .project-item { transition: 0.5s; margin-bottom: 30px; opacity: 0; transform: translateY(30px); }
+        .project-item.visible { opacity: 1; transform: translateY(0); }
+        
+        .card-view .project-card { border-radius: 15px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card-view .img-box { height: 350px; overflow: hidden; position: relative; }
+        .card-view img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .card-view .project-card:hover img { transform: scale(1.1); }
+        
+        .list-view .project-card { display: flex; align-items: center; background: none; border-bottom: 1px solid #eee; padding-bottom: 30px; }
+        .list-view .img-box { width: 150px; height: 100px; margin-right: 30px; flex-shrink: 0; border-radius: 8px; overflow: hidden; }
+
+        /* --- Team Section --- */
+        .team-card { text-align: center; overflow: hidden; border-radius: 15px; }
+        .team-img { position: relative; overflow: hidden; border-radius: 15px; height: 400px; }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .team-card:hover img { transform: scale(1.05); }
+        .team-social { position: absolute; bottom: -50px; left: 0; width: 100%; background: var(--gold); padding: 10px; transition: 0.4s; }
+        .team-card:hover .team-social { bottom: 0; }
+
+        /* --- Video Section --- */
+        .video-box { height: 500px; border-radius: 20px; overflow: hidden; position: relative; background: url('https://images.unsplash.com/photo-1600585154340-be6199f7c096?q=80&w=2070') center/cover; }
+        .play-btn { width: 90px; height: 90px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); font-size: 2rem; cursor: pointer; animation: pulse 2s infinite; }
+
+        /* --- Gallery Animation --- */
+        .gallery-img { border-radius: 15px; overflow: hidden; margin-bottom: 25px; cursor: pointer; position: relative; }
+        .gallery-img img { width: 100%; transition: 0.5s; }
+        .gallery-img:hover img { transform: scale(1.1) rotate(2deg); filter: brightness(0.7); }
+
+        /* --- Footer --- */
+        footer { background: #0a0a0a; color: #888; padding: 80px 0 30px; }
+        footer h4 { color: white; margin-bottom: 25px; }
+        footer a { color: #888; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; }
+        footer a:hover { color: var(--gold); padding-left: 5px; }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            70% { box-shadow: 0 0 0 30px rgba(255,255,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-caption h1 { font-size: 2.5rem; }
+            .section-title h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div style="background:var(--gold); width:40px; height:40px; display:grid; place-items:center; color:white; font-weight:bold; border-radius:6px;">D</div>
+                <span class="ms-2 fw-bold text-white" id="logo-text">DOMO.</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                </ul>
+            </div>
+            <button class="btn-gold rounded-pill px-4 py-2">Get Quote</button>
+        </div>
+    </nav>
+
+    <div id="heroSlider" class="carousel slide carousel-fade hero" data-bs-ride="carousel" id="home">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=2070');">
+                <div class="hero-caption">
+                    <h1 class="animate__animated animate__fadeInLeft">Modern Luxury<br><span>Living Defined.</span></h1>
+                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Creating sustainable environments that inspire human connection.</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6199f7c096?q=80&w=2070');">
+                <div class="hero-caption">
+                    <h1>Building Your<br><span>Architectural Dream.</span></h1>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2070');">
+                <div class="hero-caption">
+                    <h1>Innovation In<br><span>Every Corner.</span></h1>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" data-bs-target="#heroSlider" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" data-bs-target="#heroSlider" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1503387762-592dee582a2b?q=80&w=1000" class="img-fluid rounded-4 shadow-lg" alt="About">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <div class="section-title">
+                        <p>Our Legacy</p>
+                        <h2>We Design Experiences,<br><span class="fst-italic text-muted">Not Just Buildings.</span></h2>
+                    </div>
+                    <p class="lead text-muted">With 25 years of excellence, we specialize in high-end residential and commercial architecture across the globe.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3"><i class="fas fa-check-circle text-gold me-2"></i> Award Winning Design Team</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-gold me-2"></i> Eco-Friendly Sustainable Materials</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-gold me-2"></i> End-to-End Project Management</li>
+                    </ul>
+                    <button class="btn-gold mt-3">Read Full Story</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light" id="projects">
+        <div class="container">
+            <div class="text-center section-title">
+                <p>Curated Work</p>
+                <h2>Featured Projects</h2>
+            </div>
+            
+            <div class="d-flex justify-content-center mb-5">
+                <button class="btn btn-outline-dark me-2" onclick="setView('card')"><i class="fas fa-th-large"></i> Card</button>
+                <button class="btn btn-outline-dark" onclick="setView('list')"><i class="fas fa-list"></i> List</button>
+            </div>
+
+            <div class="row card-view" id="projectContainer">
+                <div class="col-md-4 project-item">
+                    <div class="project-card">
+                        <div class="img-box">
+                            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000" alt="Villa">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="m-0">Glass House Villa</h4>
+                            <small class="text-muted">Dubai, UAE | Completed 2025</small>
+                            <p class="mt-3">A masterpiece of light and glass integration.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container text-center">
+            <div class="section-title">
+                <p>Expertise</p>
+                <h2>Our Premium Services</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="p-5 border rounded-4 hover-shadow transition">
+                        <i class="fas fa-pencil-ruler fa-3x mb-4 text-gold" style="color:var(--gold)"></i>
+                        <h4>Architecture</h4>
+                        <p class="text-muted">Concept to blueprint phase with full 3D modeling.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="p-5 border rounded-4 bg-dark text-white">
+                        <i class="fas fa-couch fa-3x mb-4 text-gold"></i>
+                        <h4>Interior Design</h4>
+                        <p>Luxury furniture selection and spatial planning.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="p-5 border rounded-4">
+                        <i class="fas fa-building fa-3x mb-4 text-gold"></i>
+                        <h4>Construction</h4>
+                        <p class="text-muted">Turnkey solutions for residential and commercial.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-0">
+        <div class="container">
+            <div class="video-box">
+                <div class="play-btn"><i class="fas fa-play"></i></div>
+                <div class="position-absolute bottom-0 p-5 text-white">
+                    <h2 class="display-5">The Future of Space</h2>
+                    <p>Watch our 2026 Architectural Vision Documentary</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <div class="text-center section-title">
+                <p>Creative Minds</p>
+                <h2>Meet The Experts</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000" alt="Team">
+                            <div class="team-social">
+                                <i class="fab fa-linkedin mx-2 text-white"></i>
+                                <i class="fab fa-twitter mx-2 text-white"></i>
+                            </div>
+                        </div>
+                        <h5 class="mt-3 mb-0">Marcus Thorne</h5>
+                        <small class="text-gold fw-bold">Lead Architect</small>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+        <div class="container">
+            <div class="text-center section-title">
+                <p>Visual Journey</p>
+                <h2>Gallery</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><div class="gallery-img"><img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=600" alt="G1"></div></div>
+                <div class="col-md-8"><div class="gallery-img"><img src="https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?q=80&w=1200" alt="G2"></div></div>
+                <div class="col-md-6"><div class="gallery-img"><img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=800" alt="G3"></div></div>
+                <div class="col-md-6"><div class="gallery-img"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=800" alt="G4"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold">DOMO.</h4>
+                    <p>Pioneering the next generation of architectural masterpieces. Quality and luxury in every square foot.</p>
+                    <div class="mt-4">
+                        <i class="fab fa-facebook me-3"></i>
+                        <i class="fab fa-instagram me-3"></i>
+                        <i class="fab fa-behance"></i>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h4>Links</h4>
+                    <a href="#">Projects</a>
+                    <a href="#">Process</a>
+                    <a href="#">Career</a>
+                </div>
+                <div class="col-lg-6">
+                    <h4>Newsletter</h4>
+                    <p>Get exclusive project previews.</p>
+                    <div class="input-group mb-3 mt-4">
+                        <input type="text" class="form-control bg-dark text-white border-0" placeholder="Email Address">
+                        <button class="btn-gold">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 border-secondary">
+            <div class="text-center mt-4">
+                <p>© 2026 Domo Architecture. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Sticky Navbar
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('#navbar').addClass('sticky');
+                $('#logo-text').removeClass('text-white').addClass('text-dark');
+            } else {
+                $('#navbar').removeClass('sticky');
+                $('#logo-text').removeClass('text-dark').addClass('text-white');
+            }
+        });
+
+        // Project View Switcher
+        function setView(mode) {
+            const container = $('#projectContainer');
+            if(mode === 'list') {
+                container.removeClass('card-view').addClass('list-view');
+            } else {
+                container.removeClass('list-view').addClass('card-view');
+            }
+        }
+
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

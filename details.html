@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lumina Residences – Domo Holdings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --cream:       #f5f0e8;
+  --cream-alt:   #ede8dc;
+  --gold:        #c8943a;
+  --gold-light:  #d4a855;
+  --gold-pale:   #f3ead8;
+  --dark:        #18100a;
+  --dark-brown:  #2c1f0e;
+  --text:        #3a3028;
+  --text-muted:  #7a6e62;
+  --text-light:  #a09585;
+  --border:      rgba(0,0,0,0.09);
+  --white:       #ffffff;
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'DM Sans', sans-serif;
+  --radius:      6px;
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.07);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 15px 0;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(26,18,9,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 10px 0;
+}
+.nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.logo-dot {
+  width: 30px; height: 30px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 13px; font-weight: 600;
+  color: var(--white);
+}
+.logo-name {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.4px;
+}
+.nav-center {
+  font-size: 13px; color: rgba(255,255,255,0.65);
+  letter-spacing: 0.3px;
+}
+.nav-right {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-btn {
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  font-size: 13px; font-weight: 500;
+  font-family: var(--font-sans);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.nav-btn-gold {
+  background: var(--gold);
+  color: var(--white);
+}
+.nav-btn-gold:hover { background: var(--gold-light); color: var(--white); text-decoration: none; }
+
+/* ══════════════════════════════════════
+   HERO / FULLSCREEN IMAGE
+══════════════════════════════════════ */
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1800&q=85') center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,6,2,0.28) 0%,
+    rgba(10,6,2,0.18) 40%,
+    rgba(10,6,2,0.72) 80%,
+    rgba(10,6,2,0.88) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1180px; margin: 0 auto;
+  padding: 0 32px 0;
+  width: 100%;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; color: rgba(255,255,255,0.55);
+  text-decoration: none; letter-spacing: 0.3px;
+  margin-bottom: 14px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: rgba(255,255,255,0.85); text-decoration: none; }
+.back-link svg { width: 14px; height: 14px; }
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(44px, 6vw, 78px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.0;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.hero-tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 24px;
+  font-family: var(--font-serif);
+  letter-spacing: 0.3px;
+}
+
+/* Thumbnail strip */
+.thumb-strip {
+  display: flex; gap: 8px;
+  padding-bottom: 36px;
+}
+.thumb {
+  width: 120px; height: 76px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+.thumb:first-child { border-color: var(--gold); }
+.thumb:hover { border-color: rgba(255,255,255,0.5); }
+.thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ══════════════════════════════════════
+   OVERVIEW SECTION
+══════════════════════════════════════ */
+#overview {
+  background: var(--cream);
+  padding: 72px 0 80px;
+}
+.overview-inner {
+  max-width: 1180px; margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Left col */
+.section-eyebrow {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px; display: block;
+}
+.overview-title {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 400; color: var(--dark);
+  line-height: 1.15; margin-bottom: 16px;
+}
+.overview-body {
+  font-size: 14px; line-height: 1.85;
+  color: var(--text-muted); margin-bottom: 36px;
+  max-width: 520px;
+}
+
+/* Land & Building Details table */
+.details-heading {
+  font-size: 13px; font-weight: 600;
+  color: var(--text); margin-bottom: 14px;
+  letter-spacing: 0.2px;
+}
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+.details-table td {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  vertical-align: top;
+}
+.details-table td:first-child {
+  color: var(--text-muted);
+  width: 110px;
+  font-size: 12.5px;
+}
+.details-table td:not(:first-child) {
+  color: var(--text);
+  font-weight: 500;
+  padding-left: 8px;
+}
+.details-table .detail-val-row {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.detail-block { display: flex; flex-direction: column; gap: 2px; }
+.detail-block .val { font-size: 13px; font-weight: 600; color: var(--dark); }
+.detail-block .lbl { font-size: 11px; color: var(--text-light); }
+
+/* Amenities */
+.amenities-heading {
+  font-size: 13px; font-weight: 600;
+  color: var(--text); margin-bottom: 14px;
+}
+.amenities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.amenity-tag {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 12.5px; color: var(--text);
+}
+.amenity-tag svg { width: 14px; height: 14px; color: var(--gold); flex-shrink: 0; }
+
+/* Right col – Quick Facts card */
+.quick-facts-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  position: sticky;
+  top: 88px;
+}
+.qf-header {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.qf-units {
+  font-family: var(--font-serif);
+  font-size: 38px; font-weight: 400;
+  color: var(--dark); line-height: 1;
+  margin-bottom: 4px;
+}
+.qf-units-label {
+  font-size: 12px; color: var(--text-light);
+  margin-bottom: 22px;
+}
+.qf-divider {
+  height: 1px; background: var(--border);
+  margin-bottom: 22px;
+}
+.qf-facts { display: flex; flex-direction: column; gap: 14px; margin-bottom: 26px; }
+.qf-fact { display: flex; align-items: flex-start; gap: 12px; }
+.qf-icon {
+  width: 30px; height: 30px;
+  background: var(--gold-pale);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.qf-icon svg { width: 13px; height: 13px; color: var(--gold); }
+.qf-fact-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 2px;
+}
+.qf-fact-value {
+  font-size: 13.5px; font-weight: 500;
+  color: var(--dark); line-height: 1.3;
+}
+.btn-brochure {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 13px 20px;
+  background: var(--gold); color: var(--white);
+  border: none; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer; transition: background 0.2s;
+  margin-bottom: 10px; text-decoration: none;
+}
+.btn-brochure:hover { background: var(--gold-light); color: var(--white); text-decoration: none; }
+.btn-visit {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 12px 20px;
+  background: transparent; color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px; font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: none; margin-bottom: 12px;
+}
+.btn-visit:hover { border-color: var(--gold); color: var(--gold); text-decoration: none; }
+.qf-book-note {
+  text-align: center; font-size: 11px;
+  color: var(--text-light);
+}
+
+/* ══════════════════════════════════════
+   WALKTHROUGH / VIDEO
+══════════════════════════════════════ */
+#walkthrough {
+  background: var(--cream);
+  padding: 80px 0;
+}
+.walkthrough-inner {
+  max-width: 1180px; margin: 0 auto;
+  padding: 0 32px;
+}
+.walkthrough-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 28px;
+}
+.walkthrough-title-wrap {}
+.walkthrough-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400; color: var(--dark);
+  line-height: 1.1;
+}
+.walkthrough-title em { font-style: italic; color: var(--gold); }
+.walkthrough-desc {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.7; max-width: 260px;
+  text-align: right;
+}
+
+/* Video player */
+.video-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 420px;
+  background: #1a1209;
+  cursor: pointer;
+}
+.video-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.video-wrap:hover img { transform: scale(1.02); }
+.video-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top,rgba(10,6,2,0.72) 0%,rgba(10,6,2,0.1) 60%,transparent 100%);
+}
+.play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 60px; height: 60px;
+  background: rgba(200,148,58,0.92);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s;
+  z-index: 2;
+}
+.play-btn:hover { background: var(--gold); transform: translate(-50%,-50%) scale(1.08); }
+.play-btn svg { width: 22px; height: 22px; fill: var(--white); margin-left: 3px; }
+.video-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 20px 24px;
+  display: flex; justify-content: space-between;
+  align-items: flex-end; z-index: 2;
+}
+.video-label {
+  font-family: var(--font-serif);
+  font-size: 16px; color: var(--white);
+  font-weight: 400;
+}
+.video-duration {
+  font-size: 11.5px; color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+}
+.video-subtitle {
+  position: absolute;
+  bottom: 44px; left: 24px;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+}
+
+/* ══════════════════════════════════════
+   GALLERY
+══════════════════════════════════════ */
+#gallery {
+  background: var(--cream);
+  padding: 80px 0;
+}
+.gallery-inner {
+  max-width: 1180px; margin: 0 auto;
+  padding: 0 32px;
+}
+.gallery-header {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 28px;
+}
+.gallery-title {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 400; color: var(--dark);
+}
+.gallery-title em { font-style: italic; color: var(--gold); }
+.gallery-note {
+  font-size: 12px; color: var(--text-light);
+  letter-spacing: 0.2px;
+}
+
+/* Asymmetric gallery grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr;
+  grid-template-rows: 220px 180px;
+  gap: 10px;
+}
+.gal-item {
+  position: relative;
+  border-radius: 7px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.gal-item.big { grid-row: 1 / 3; }
+.gal-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.45s ease;
+}
+.gal-item:hover img { transform: scale(1.05); }
+.gal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,6,2,0.12);
+  transition: background 0.3s;
+}
+.gal-item:hover .gal-overlay { background: rgba(10,6,2,0.25); }
+.gal-count {
+  position: absolute; bottom: 10px; right: 10px;
+  background: rgba(10,6,2,0.55);
+  color: rgba(255,255,255,0.75);
+  font-size: 10px; padding: 3px 8px;
+  border-radius: 100px; letter-spacing: 0.5px;
+  backdrop-filter: blur(6px);
+}
+
+/* ══════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════ */
+#cta {
+  padding: 0 32px 80px;
+  max-width: 1180px; margin: 0 auto;
+}
+.cta-card {
+  position: relative; border-radius: 12px;
+  overflow: hidden; min-height: 340px;
+  display: flex; align-items: center;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80') right center/cover no-repeat;
+}
+.cta-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right,rgba(18,11,4,0.94) 0%,rgba(18,11,4,0.70) 50%,rgba(18,11,4,0.22) 100%);
+}
+.cta-content {
+  position: relative; z-index: 2;
+  padding: 56px 60px; max-width: 540px;
+}
+.cta-eyebrow {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px; display: block;
+}
+.cta-title {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 3vw, 44px);
+  font-weight: 400; color: var(--white);
+  line-height: 1.12; margin-bottom: 16px;
+}
+.cta-title em { font-style: italic; color: var(--gold); }
+.cta-sub {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  line-height: 1.72; margin-bottom: 32px;
+}
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px;
+  background: var(--gold); color: var(--white);
+  font-size: 13px; font-weight: 500;
+  border-radius: var(--radius); text-decoration: none;
+  border: none; cursor: pointer; transition: background 0.2s;
+  font-family: var(--font-sans);
+}
+.btn-gold:hover { background: var(--gold-light); color: var(--white); text-decoration: none; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  background: transparent; color: rgba(255,255,255,0.8);
+  font-size: 13px; font-weight: 500;
+  border-radius: var(--radius); text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.28);
+  cursor: pointer; transition: all 0.2s;
+  font-family: var(--font-sans);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.65); color: var(--white); text-decoration: none; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: var(--dark-brown);
+  padding: 56px 0 26px;
+}
+.footer-inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 32px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.6fr;
+  gap: 52px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 24px;
+}
+.footer-brand-desc {
+  font-size: 13px; color: rgba(255,255,255,0.38);
+  line-height: 1.75; margin: 12px 0 20px;
+  max-width: 240px;
+}
+.footer-socials { display: flex; gap: 8px; }
+.soc-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.45); font-size: 11px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+  font-family: var(--font-sans);
+}
+.soc-btn:hover { background: var(--gold); color: var(--white); text-decoration: none; }
+.footer-col-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 16px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 9px; }
+.footer-links a {
+  font-size: 13.5px; color: rgba(255,255,255,0.36);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.75); text-decoration: none; }
+.footer-contact-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 10px;
+}
+.footer-contact-item svg { width: 13px; height: 13px; color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+.footer-contact-item span {
+  font-size: 12.5px; color: rgba(255,255,255,0.38);
+  line-height: 1.55;
+}
+.footer-contact-item a { color: rgba(255,255,255,0.38); text-decoration: none; }
+.footer-contact-item a:hover { color: rgba(255,255,255,0.65); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 11.5px; color: rgba(255,255,255,0.22); }
+
+/* ══════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════ */
+.lightbox {
+  display: none;
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(10,6,2,0.95);
+  align-items: center; justify-content: center;
+  padding: 40px;
+}
+.lightbox.open { display: flex; }
+.lightbox-img {
+  max-width: 90vw; max-height: 85vh;
+  border-radius: 8px; object-fit: contain;
+}
+.lightbox-close {
+  position: absolute; top: 20px; right: 26px;
+  color: rgba(255,255,255,0.6); font-size: 28px;
+  cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+  background: none; border: none;
+}
+.lightbox-close:hover { color: var(--white); }
+.lightbox-arrow {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px;
+  transition: all 0.2s; z-index: 2;
+}
+.lightbox-arrow:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+/* ══════════════════════════════════════
+   SCROLL ANIMATION
+══════════════════════════════════════ */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-up.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .overview-inner { grid-template-columns: 1fr; }
+  .quick-facts-card { position: static; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-item.big { grid-row: auto; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .walkthrough-header { flex-direction: column; gap: 8px; }
+  .walkthrough-desc { text-align: left; }
+}
+@media (max-width: 640px) {
+  .thumb-strip { gap: 6px; }
+  .thumb { width: 80px; height: 52px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .cta-content { padding: 36px 28px; }
+  .nav-center { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ NAVBAR ════════════════ -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="domo-holdings.html" class="nav-logo">
+      <div class="logo-dot">D</div>
+      <span class="logo-name">Domo</span>
+    </a>
+    <div class="nav-center">Projects / Lumina Residences</div>
+    <div class="nav-right">
+      <a href="#cta" class="nav-btn nav-btn-gold">Enquire Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <a href="#" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to projects
+    </a>
+    <h1 class="hero-title">The Lumina Residences</h1>
+    <p class="hero-tagline">Modern living, woven with light.</p>
+    <div class="thumb-strip">
+      <div class="thumb" onclick="openLightbox(0)">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300&q=80" alt="Thumb 1">
+      </div>
+      <div class="thumb" onclick="openLightbox(1)">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=300&q=80" alt="Thumb 2">
+      </div>
+      <div class="thumb" onclick="openLightbox(2)">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=300&q=80" alt="Thumb 3">
+      </div>
+      <div class="thumb" onclick="openLightbox(3)">
+        <img src="https://images.unsplash.com/photo-1560185127-6a202944b3e3?w=300&q=80" alt="Thumb 4">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ OVERVIEW ════════════════ -->
+<section id="overview">
+  <div class="overview-inner">
+
+    <!-- LEFT: details -->
+    <div>
+      <span class="section-eyebrow fade-up">Overview</span>
+      <h2 class="overview-title fade-up">Modern living, woven with light.</h2>
+      <p class="overview-body fade-up">
+        Lumina rises as a landmark of contemporary residential design — timber-clad façades, double-height lobbies and curated amenities define a new standard of urban living in the heart of Banani.
+      </p>
+
+      <!-- Land & Building Details -->
+      <div class="fade-up">
+        <div class="details-heading">Land &amp; Building Details</div>
+        <table class="details-table">
+          <tbody>
+            <tr>
+              <td>Plot Size</td>
+              <td>
+                <div class="detail-val-row">
+                  <div class="detail-block"><span class="val">32 katha</span><span class="lbl">Area</span></div>
+                  <div class="detail-block"><span class="val">Floors</span><span class="lbl">&nbsp;</span></div>
+                  <div class="detail-block"><span class="val">G + 14</span><span class="lbl">&nbsp;</span></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Facing</td>
+              <td>
+                <div class="detail-val-row">
+                  <div class="detail-block"><span class="val">South-East</span><span class="lbl">&nbsp;</span></div>
+                  <div class="detail-block"><span class="val">Zoning</span><span class="lbl">&nbsp;</span></div>
+                  <div class="detail-block"><span class="val">Residential Mixed-Use</span><span class="lbl">&nbsp;</span></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Rera</td>
+              <td><span style="font-weight:500;color:var(--dark)">DAP/2024LR-01B4</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Amenities -->
+      <div class="fade-up">
+        <div class="amenities-heading">Amenities</div>
+        <div class="amenities-grid">
+          <div class="amenity-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Rooftop Infinity Pool
+          </div>
+          <div class="amenity-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Sky Lounge
+          </div>
+          <div class="amenity-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Wellness Spa
+          </div>
+          <div class="amenity-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Co-working Lounge
+          </div>
+          <div class="amenity-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+            EV Charging
+          </div>
+          <div class="amenity-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            24/7 Concierge
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Quick Facts -->
+    <div>
+      <div class="quick-facts-card fade-up">
+        <div class="qf-header">Quick Facts</div>
+        <div class="qf-units">84</div>
+        <div class="qf-units-label">Units</div>
+        <div class="qf-divider"></div>
+        <div class="qf-facts">
+          <div class="qf-fact">
+            <div class="qf-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            </div>
+            <div>
+              <div class="qf-fact-label">Location</div>
+              <div class="qf-fact-value">Banani, Dhaka</div>
+            </div>
+          </div>
+          <div class="qf-fact">
+            <div class="qf-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <div class="qf-fact-label">Category</div>
+              <div class="qf-fact-value">Luxury Apartments</div>
+            </div>
+          </div>
+          <div class="qf-fact">
+            <div class="qf-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <div>
+              <div class="qf-fact-label">Completion</div>
+              <div class="qf-fact-value">2026</div>
+            </div>
+          </div>
+          <div class="qf-fact">
+            <div class="qf-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div>
+              <div class="qf-fact-label">Scale</div>
+              <div class="qf-fact-value">320,000 sq ft</div>
+            </div>
+          </div>
+          <div class="qf-fact">
+            <div class="qf-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div class="qf-fact-label">Facing</div>
+              <div class="qf-fact-value">South-East</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="btn-brochure">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Request Brochure
+        </a>
+        <a href="#" class="btn-visit">Schedule a Visit</a>
+        <div class="qf-book-note">Book: 009/2024LR-01B4</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ WALKTHROUGH ════════════════ -->
+<section id="walkthrough">
+  <div class="walkthrough-inner">
+    <div class="walkthrough-header fade-up">
+      <div class="walkthrough-title-wrap">
+        <span class="section-eyebrow">Walkthrough</span>
+        <h2 class="walkthrough-title">Watch the <em>film.</em></h2>
+      </div>
+      <p class="walkthrough-desc">A two-minute cinematic tour of The Lumina Residences — narrated by our lead architect.</p>
+    </div>
+
+    <div class="video-wrap fade-up" onclick="togglePlay(this)">
+      <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=85" alt="Lumina Residences walkthrough" id="videoThumb">
+      <div class="video-overlay"></div>
+      <div class="play-btn" id="playBtn">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+      <div class="video-subtitle">The Lumina Residences</div>
+      <div class="video-bottom">
+        <span class="video-label">The Lumina Residences — In Motion</span>
+        <span class="video-duration">2 / 14 &nbsp;·&nbsp; 09</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ GALLERY ════════════════ -->
+<section id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header fade-up">
+      <div>
+        <span class="section-eyebrow">Gallery</span>
+        <h2 class="gallery-title">Inside <em>The Lumina Residences</em></h2>
+      </div>
+      <span class="gallery-note">4 images · click any frame to enter the lightbox</span>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gal-item big fade-up" onclick="openLightbox(0)">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=85" alt="Gallery 1">
+        <div class="gal-overlay"></div>
+      </div>
+      <div class="gal-item fade-up d1" onclick="openLightbox(1)">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Gallery 2">
+        <div class="gal-overlay"></div>
+        <div class="gal-count">01 / 04</div>
+      </div>
+      <div class="gal-item fade-up d2" onclick="openLightbox(2)">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Gallery 3">
+        <div class="gal-overlay"></div>
+        <div class="gal-count">02 / 04</div>
+      </div>
+      <div class="gal-item fade-up d1" onclick="openLightbox(3)">
+        <img src="https://images.unsplash.com/photo-1560185127-6a202944b3e3?w=600&q=80" alt="Gallery 4">
+        <div class="gal-overlay"></div>
+        <div class="gal-count">04 / 04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CTA ════════════════ -->
+<div id="cta" style="background:var(--cream); padding-top:12px;">
+  <div style="max-width:1180px; margin:0 auto;">
+    <div class="cta-card fade-up">
+      <div class="cta-bg"></div>
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <span class="cta-eyebrow">Ready to Begin</span>
+        <h2 class="cta-title">
+          Find a residence as<br>
+          <em>remarkable</em> as the<br>
+          life you'll live in it.
+        </h2>
+        <p class="cta-sub">Schedule a private tour with our advisory team. We'll curate a shortlist tailored to you.</p>
+        <div class="cta-btns">
+          <a href="#" class="btn-gold">
+            Book a Private Tour
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#" class="btn-ghost">Browse Projects</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none;">
+          <div class="logo-dot">D</div>
+          <span style="font-family:var(--font-serif); font-size:19px; font-weight:500; color:var(--white);">Domo.</span>
+        </a>
+        <p class="footer-brand-desc">Architecting legacies through landmark real estate developments across South Asia.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">f</a>
+          <a href="#" class="soc-btn">ig</a>
+          <a href="#" class="soc-btn">in</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get in touch</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          <span>Plot 12, Road 11, Banani, Dhaka 1213</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>+880 1700 100 264</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span><a href="mailto:hello@domoholdings.co">hello@domoholdings.co</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Domo Holdings. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════ LIGHTBOX ════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+  <button class="lightbox-arrow lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery">
+  <button class="lightbox-arrow lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
+</div>
+
+<script>
+/* ── Navbar scroll ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── Scroll fade-in ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.10 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+/* ── Lightbox ── */
+const imgs = [
+  'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=90',
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&q=90',
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=90',
+  'https://images.unsplash.com/photo-1560185127-6a202944b3e3?w=1400&q=90'
+];
+let currentImg = 0;
+
+function openLightbox(idx) {
+  currentImg = idx;
+  document.getElementById('lightboxImg').src = imgs[idx];
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lightboxNav(dir) {
+  currentImg = (currentImg + dir + imgs.length) % imgs.length;
+  document.getElementById('lightboxImg').src = imgs[currentImg];
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'ArrowRight') lightboxNav(1);
+});
+
+/* ── Thumb active state ── */
+document.querySelectorAll('.thumb').forEach((t, i) => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.thumb').forEach(x => x.style.borderColor = 'transparent');
+    t.style.borderColor = 'var(--gold)';
+  });
+});
+
+/* ── Video play toggle ── */
+function togglePlay(wrap) {
+  const btn = wrap.querySelector('#playBtn');
+  btn.style.opacity = btn.style.opacity === '0' ? '1' : '0';
+}
+</script>
+</body>
+</html>

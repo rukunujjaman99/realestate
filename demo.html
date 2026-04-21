@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domo | Architectural Mastery</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --primary-gold: #c59d5f;
+            --dark-purple: #3d2b56;
+            --light-bg: #fdfcf8;
+            --text-muted: #7a7a7a;
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light-bg); overflow-x: hidden; }
+        h1, h2, h4, .playfair { font-family: 'Playfair Display', serif; }
+
+        /* --- STICKY NAVBAR --- */
+        .navbar { transition: all 0.4s ease; padding: 25px 0; z-index: 1000; }
+        .navbar.sticky-nav { background: rgba(255, 255, 255, 0.98); padding: 12px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .nav-link { color: #fff !important; font-weight: 500; margin: 0 15px; font-size: 0.95rem; }
+        .sticky-nav .nav-link { color: #333 !important; }
+        .btn-inquire { background: var(--primary-gold); color: white; border-radius: 6px; padding: 10px 28px; border: none; font-weight: 600; }
+
+        /* --- HERO SLIDER --- */
+        .hero-section { height: 100vh; position: relative; background: #000; }
+        .carousel-item { height: 100vh; background-size: cover; background-position: center; }
+        .carousel-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), transparent); }
+        .hero-content { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; color: white; padding-left: 5%; }
+        .hero-title { font-size: 5.5rem; line-height: 1; margin-bottom: 25px; }
+        .hero-title span { color: var(--primary-gold); font-style: italic; }
+        .btn-gold { background: var(--primary-gold); color: #fff; padding: 16px 32px; border-radius: 4px; border: none; transition: 0.3s; }
+        .btn-outline-white { border: 1px solid #fff; color: #fff; padding: 16px 32px; border-radius: 4px; background: transparent; margin-left: 15px; }
+
+        /* --- FILTER & SEARCH SECTION --- */
+        .refine-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            margin-top: -50px;
+            position: relative;
+            z-index: 20;
+        }
+        .filter-btn {
+            border: none; background: #fff; padding: 10px 25px; border-radius: 30px;
+            font-weight: 600; color: #888; transition: 0.3s; margin: 5px;
+            border: 1px solid #eee;
+        }
+        .filter-btn span { font-size: 0.7rem; vertical-align: top; margin-left: 4px; opacity: 0.7; }
+        .filter-btn.active { background: var(--dark-purple); color: #fff; border-color: var(--dark-purple); }
+
+        .search-input {
+            border: 1px solid #eee; padding: 12px 20px; border-radius: 8px; width: 100%;
+            background: #f9f9f9; outline: none; transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--primary-gold); background: #fff; }
+
+        /* --- PROJECT CARDS --- */
+        .grid-item { padding: 15px; }
+        .project-card {
+            background: #fff; border-radius: 12px; overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none; position: relative;
+        }
+        .project-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-img-wrapper { position: relative; height: 320px; overflow: hidden; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .project-card:hover img { transform: scale(1.1); }
+        
+        .badge-status {
+            position: absolute; top: 15px; left: 15px; z-index: 5;
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(8px);
+            color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem;
+        }
+        
+        .card-info-overlay {
+            position: absolute; bottom: 20px; left: 20px; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .card-footer-details {
+            padding: 18px 20px; display: flex; justify-content: space-between;
+            border-top: 1px solid #f1f1f1; font-size: 0.85rem; color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.2rem; }
+            .nav-links-wrapper { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div style="background:var(--primary-gold); width:38px; height:38px; display:grid; place-items:center; color:white; font-weight:bold; border-radius:4px;">D</div>
+                <span class="ms-2 fw-bold" id="logoText" style="color: #fff; letter-spacing: 1px;">Domo.</span>
+            </a>
+            <div class="nav-links-wrapper mx-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+            <button class="btn-inquire">Inquire</button>
+        </div>
+    </nav>
+
+    <div id="heroSlider" class="carousel slide carousel-fade hero-section" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=2070');">
+                <div class="container hero-content">
+                    <p class="text-uppercase animate__animated animate__fadeInDown" style="letter-spacing: 3px; font-size: 0.8rem;">Featured Development</p>
+                    <h1 class="hero-title animate__animated animate__fadeInLeft">Architectural<br>Mastery.<br><span>Enduring Value.</span></h1>
+                    <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                        <button class="btn-gold">Explore Portfolio <i class="fas fa-arrow-right ms-2"></i></button>
+                        <button class="btn-outline-white">Our Vision</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="pb-5">
+        <div class="container">
+            <div class="refine-box row align-items-center">
+                <div class="col-lg-8 mb-3 mb-lg-0">
+                    <div class="d-flex flex-wrap" id="filter-btns">
+                        <button class="filter-btn active" data-filter="*">All Stages <span>06</span></button>
+                        <button class="filter-btn" data-filter=".ongoing">Ongoing <span>02</span></button>
+                        <button class="filter-btn" data-filter=".upcoming">Upcoming <span>02</span></button>
+                        <button class="filter-btn" data-filter=".completed">Completed <span>02</span></button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="position-relative">
+                        <input type="text" class="search-input" id="quicksearch" placeholder="Search projects or locations...">
+                        <i class="fas fa-search position-absolute" style="right: 20px; top: 15px; color: #ccc;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row grid mt-5">
+                <div class="col-md-4 grid-item ongoing" data-category="ongoing">
+                    <div class="project-card">
+                        <div class="card-img-wrapper">
+                            <span class="badge-status">Ongoing</span>
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000" alt="Lumina">
+                            <div class="card-info-overlay">
+                                <small class="text-uppercase" style="font-size: 0.7rem;">Luxury Apartments</small>
+                                <h4 class="m-0">The Lumina Residences</h4>
+                            </div>
+                        </div>
+                        <div class="card-footer-details">
+                            <span><i class="fas fa-location-dot me-1"></i> Banani, Dhaka</span>
+                            <span>2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 grid-item upcoming" data-category="upcoming">
+                    <div class="project-card">
+                        <div class="card-img-wrapper">
+                            <span class="badge-status">Upcoming</span>
+                            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000" alt="Emberbrook">
+                            <div class="card-info-overlay">
+                                <small class="text-uppercase" style="font-size: 0.7rem;">Private Villas</small>
+                                <h4 class="m-0">Emberbrook Estate</h4>
+                            </div>
+                        </div>
+                        <div class="card-footer-details">
+                            <span><i class="fas fa-location-dot me-1"></i> Purbachal, Dhaka</span>
+                            <span>2027</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 grid-item completed" data-category="completed">
+                    <div class="project-card">
+                        <div class="card-img-wrapper">
+                            <span class="badge-status">Completed</span>
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="Meridian">
+                            <div class="card-info-overlay">
+                                <small class="text-uppercase" style="font-size: 0.7rem;">Commercial</small>
+                                <h4 class="m-0">The Meridian Tower</h4>
+                            </div>
+                        </div>
+                        <div class="card-footer-details">
+                            <span><i class="fas fa-location-dot me-1"></i> Gulshan, Dhaka</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Initialize Isotope
+            var qsRegex;
+            var buttonFilter;
+
+            var $grid = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                layoutMode: 'fitRows',
+                filter: function() {
+                    var $this = $(this);
+                    var searchResult = qsRegex ? $this.text().match(qsRegex) : true;
+                    var buttonResult = buttonFilter ? $this.is(buttonFilter) : true;
+                    return searchResult && buttonResult;
+                }
+            });
+
+            // 2. Category Filter Logic
+            $('#filter-btns').on('click', 'button', function() {
+                buttonFilter = $(this).attr('data-filter');
+                $grid.isotope();
+                $('#filter-btns button').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // 3. Search Logic (Quick Search)
+            var $quicksearch = $('#quicksearch').keyup(debounce(function() {
+                qsRegex = new RegExp($quicksearch.val(), 'gi');
+                $grid.isotope();
+            }, 200));
+
+            // Debounce function to prevent lag
+            function debounce(fn, threshold) {
+                var timeout;
+                return function debounced() {
+                    if (timeout) clearTimeout(timeout);
+                    function delayed() { fn(); timeout = null; }
+                    timeout = setTimeout(delayed, threshold || 100);
+                };
+            }
+
+            // 4. Sticky Navbar Scroll Logic
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#mainNav').addClass('sticky-nav');
+                    $('#logoText').css('color', '#333');
+                } else {
+                    $('#mainNav').removeClass('sticky-nav');
+                    $('#logoText').css('color', '#fff');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

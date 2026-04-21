@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Insights | DOMO Architecture</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --gold-light: #e0ca9e;
+            --purple-accent: #3d2b56; /* From your Screenshot 10 */
+            --bg-light: #fdfaf5;
+            --dark: #1a1a1a;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-light); color: var(--dark); overflow-x: hidden; }
+        h1, h2, h3, h4, .playfair { font-family: 'Playfair Display', serif; }
+
+        /* --- STYLISH TAG FILTER (Screenshot 10 Style) --- */
+        .filter-pill {
+            background: #fff;
+            border-radius: 50px;
+            padding: 5px 10px;
+            display: inline-flex;
+            gap: 5px;
+            border: 1px solid #eee;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .tag-btn {
+            padding: 8px 20px; border-radius: 50px; border: none; background: transparent; font-size: 0.85rem; font-weight: 600; color: #666; transition: 0.3s;
+        }
+        .tag-btn:hover { color: var(--gold); }
+        .tag-btn.active { background: var(--purple-accent); color: white; }
+
+        /* --- 3D INTERACTIVE BLOG CARDS --- */
+        .blog-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            height: 100%;
+        }
+
+        .card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.1s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(197, 157, 95, 0.1);
+            border-color: var(--gold);
+        }
+
+        .blog-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        .blog-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 1s all ease-in-out;
+        }
+        .blog-card:hover .blog-img img { transform: scale(1.1); filter: contrast(1.1); }
+
+        .card-body-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent, #000);
+            color: white;
+            z-index: 10;
+        }
+
+        .card-tag {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* --- DYNAMIC GRID & LOAD MORE --- */
+        .grid-item { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        .btn-stylish {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-stylish:hover { background: var(--gold); color: white; transform: translateY(-3px); }
+
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .blog-img { height: 220px; }
+            .card-body-overlay h4 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="py-5" style="padding-top: 120px;">
+        <div class="container text-center py-5">
+            <h6 class="text-gold text-uppercase fw-bold ls-5 mb-3">Architectural Insights</h6>
+            <h1 class="display-3 fw-bold mb-4">The Domo <span class="italic text-gold playfair">Journal.</span></h1>
+            <p class="lead text-muted mb-5">Exploring the intersection of sustainable innovation, timeless luxury, and structural mastery.</p>
+            
+            <div class="filter-pill">
+                <button class="tag-btn active">All Topics</button>
+                <button class="tag-btn">Sustainability</button>
+                <button class="tag-btn">Trends</button>
+                <button class="tag-btn">Projects</button>
+                <button class="tag-btn">Innovation</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-5">
+        <div class="container">
+            <div class="row g-4" id="blogGrid">
+                
+                <div class="col-md-4 grid-item delay-1">
+                    <a href="#" class="text-decoration-none text-dark">
+                        <div class="blog-card" id="card1">
+                            <div class="card-inner">
+                                <div class="blog-img">
+                                    <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a3a?q=80&w=800" alt="Minimalism">
+                                    <div class="card-body-overlay">
+                                        <span class="card-tag">Trends</span>
+                                        <h4 class="mt-2 fw-bold">Minimalism in 2026: Embracing Quiet Luxury</h4>
+                                    </div>
+                                </div>
+                                <div class="p-3 d-flex justify-content-between text-muted small border-top">
+                                    <span>April 12, 2026</span>
+                                    <span><i class="fas fa-arrow-right text-gold"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 grid-item delay-2">
+                    <a href="#" class="text-decoration-none text-dark">
+                        <div class="blog-card" id="card2">
+                            <div class="card-inner">
+                                <div class="blog-img">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6199f7c096?q=80&w=800" alt="Sustainability">
+                                    <div class="card-body-overlay">
+                                        <span class="card-tag">Sustainability</span>
+                                        <h4 class="mt-2 fw-bold">The Rise of Multi-Use Eco-Structures</h4>
+                                    </div>
+                                </div>
+                                <div class="p-3 d-flex justify-content-between text-muted small border-top">
+                                    <span>March 28, 2026</span>
+                                    <span><i class="fas fa-arrow-right text-gold"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-md-4 grid-item">
+                    <a href="#" class="text-decoration-none text-dark">
+                        <div class="blog-card" id="card3">
+                            <div class="card-inner">
+                                <div class="blog-img">
+                                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800" alt="Innovation">
+                                    <div class="card-body-overlay">
+                                        <span class="card-tag">Innovation</span>
+                                        <h4 class="mt-2 fw-bold">Bamboo Reinforcement: A Seismic Shift in Concrete</h4>
+                                    </div>
+                                </div>
+                                <div class="p-3 d-flex justify-content-between text-muted small border-top">
+                                    <span>March 05, 2026</span>
+                                    <span><i class="fas fa-arrow-right text-gold"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="btn-stylish" id="loadMore">
+                    <span>EXPLORE ALL JOURNALS</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 border-top border-secondary mt-5">
+        <div class="container text-center">
+            <h2 class="playfair fw-bold text-dark">DOMO.</h2>
+            <div class="d-flex justify-content-center gap-4 mt-3">
+                <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-dark"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Tag Filtering Interaction
+        const tags = document.querySelectorAll('.tag-btn');
+        tags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                tags.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // You can add isotope or dynamic card rendering logic here
+            });
+        });
+
+        // 2. Interactive "3D Tilt" logic
+        const cards = document.querySelectorAll('.blog-card');
+        if (window.innerWidth > 991) { // Apply only on desktop
+            cards.forEach(card => {
+                const inner = card.querySelector('.card-inner');
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (centerY - y) / 15;
+                    const rotateY = (x - centerX) / 15;
+                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                card.addEventListener('mouseleave', function() {
+                    inner.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                });
+            });
+        }
+    </script>
+</body>
+</html>

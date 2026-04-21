@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMO | Premium Architectural Mastery</title>
+    
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+  
+</head>
+<body>
+  <!-- Navigation start -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div style="background:var(--gold); width:40px; height:40px; display:grid; place-items:center; color:white; font-weight:bold; border-radius:4px;">D</div>
+                <span class="ms-2 fw-bold text-white fs-4">DOMO.</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">PROJECTS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">SERVICES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">BLOG</a></li>
+                </ul>
+                <button class="btn-stylish">Inquire Now</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Navigation end -->
+
+      
+
+    <!-- projects section start -->
+    <section class="section-padding bg-black" id="projects">
+        <div class="container">
+            
+      
+
+            <div class="text-center my-5 py-5 reveal">
+                <h2 class="display-4 fw-bold">Featured <span class="text-gold fst-italic">Projects.</span></h2>
+            </div>
+                  <div class="filter-section reveal py-5 mb-4">
+                <div class="row g-3">
+                    <div class="col-lg-3">
+                        <input type="text" id="nameSearch" class="filter-control" placeholder="Search by name...">
+                    </div>
+                    <div class="col-lg-3">
+                        <select id="locFilter" class="filter-control">
+                            <option value="*">All Locations</option>
+                            <option value=".dhaka">Dhaka</option>
+                            <option value=".dubai">Dubai</option>
+                            <option value=".london">London</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <select id="stageFilter" class="filter-control">
+                            <option value="*">All Stages</option>
+                            <option value=".ongoing">Ongoing</option>
+                            <option value=".upcoming">Upcoming</option>
+                            <option value=".completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <select id="typeFilter" class="filter-control">
+                            <option value="*">All Project Types</option>
+                            <option value=".residential">Residential</option>
+                            <option value=".commercial">Commercial</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row grid ">
+                <div class="col-md-4 grid-item ongoing dhaka residential reveal">
+                    <div class="project-card">
+                        <div class="img-wrapper">
+                            <span class="status-badge">Ongoing</span>
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="mb-1">Lumina Residences</h4>
+                            <p class=" small">Dhaka | Residential</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-item completed dubai commercial reveal">
+                    <div class="project-card">
+                        <div class="img-wrapper">
+                            <span class="status-badge">Completed</span>
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="mb-1">The Sky Tower</h4>
+                            <p class=" small">Dubai | Commercial</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-item upcoming london residential reveal">
+                    <div class="project-card">
+                        <div class="img-wrapper">
+                            <span class="status-badge">Upcoming</span>
+                            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="mb-1">Regent Square</h4>
+                            <p class=" small">London | Residential</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- projects section end -->
+
+
+
+  <!-- footer  -->
+    <footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none;">
+          <div class="logo-dot">D</div>
+          <span style="font-family:var(--font-serif); font-size:19px; font-weight:500; color:var(--white);">Domo.</span>
+        </a>
+        <p class="footer-brand-desc">Architecting legacies through landmark real estate developments across South Asia.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">f</a>
+          <a href="#" class="soc-btn">ig</a>
+          <a href="#" class="soc-btn">in</a>
+        </div>
+      </div>
+      <div>
+     <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get in touch</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          <span>Plot 12, Road 11, Banani, Dhaka 1213</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>+880 1700 100 264</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span><a href="mailto:hello@domoholdings.co">hello@domoholdings.co</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Domo Holdings. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+    <!-- footer end -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Isotope Setup
+            var $grid = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                layoutMode: 'fitRows'
+            });
+
+            // Unified Filter Logic
+            function applyFilters() {
+                var loc = $('#locFilter').val();
+                var stage = $('#stageFilter').val();
+                var type = $('#typeFilter').val();
+                var search = $('#nameSearch').val().toLowerCase();
+
+                var filterConcat = '';
+                if(loc !== '*') filterConcat += loc;
+                if(stage !== '*') filterConcat += stage;
+                if(type !== '*') filterConcat += type;
+
+                $grid.isotope({
+                    filter: function() {
+                        var isMatched = true;
+                        if(filterConcat !== '') {
+                            isMatched = $(this).is(filterConcat);
+                        }
+                        var name = $(this).find('h4').text().toLowerCase();
+                        return isMatched && name.indexOf(search) !== -1;
+                    }
+                });
+            }
+
+            $('.filter-control').on('change keyup', applyFilters);
+
+            // Sticky Nav & Reveal
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) $('#mainNav').addClass('sticky');
+                else $('#mainNav').removeClass('sticky');
+
+                $('.reveal').each(function() {
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+                    if (bottom_of_window > $(this).offset().top + 100) {
+                        $(this).addClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

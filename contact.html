@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | DOMO Holdings</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #c59d5f;
+            --purple: #3d2b56;
+            --dark: #121212;
+            --bg: #f8f9fa;
+            --shadow: 0 20px 50px rgba(0,0,0,0.08);
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
+
+        /* --- INFO ICON BOXES --- */
+        .info-grid { margin-top: -60px; position: relative; z-index: 10; }
+        
+        .contact-icon-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+            height: 100%;
+        }
+
+        .contact-icon-box:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px rgba(197, 157, 95, 0.15);
+        }
+
+        .icon-circle {
+            width: 70px; height: 70px;
+            background: var(--purple);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .contact-icon-box:hover .icon-circle {
+            background: var(--gold);
+            transform: rotateY(360deg);
+        }
+
+        /* --- INTERACTIVE FORM --- */
+        .form-section { padding: 100px 0; }
+        
+        .glass-form-container {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+        }
+
+        .floating-input {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .floating-input input, .floating-input textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: #fdfaf5;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            outline: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .floating-input input:focus, .floating-input textarea:focus {
+            border-color: var(--gold);
+            background: white;
+            box-shadow: 0 10px 20px rgba(197, 157, 95, 0.05);
+        }
+
+        .floating-input label {
+            position: absolute;
+            left: 20px; top: 15px;
+            color: #999;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .floating-input input:focus ~ label, 
+        .floating-input input:valid ~ label,
+        .floating-input textarea:focus ~ label,
+        .floating-input textarea:valid ~ label {
+            top: -25px;
+            left: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--purple);
+            text-transform: uppercase;
+        }
+
+        /* --- SOCIAL & MAP --- */
+        .map-card {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 100%;
+            min-height: 450px;
+            filter: grayscale(1);
+            transition: 0.5s;
+        }
+        .map-card:hover { filter: grayscale(0); }
+
+        .social-follow-box {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-pill {
+            width: 50px; height: 50px;
+            background: white;
+            color: var(--purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .social-pill:hover {
+            background: var(--gold);
+            color: white;
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .btn-premium {
+            background: var(--purple);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 15px;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-premium:hover {
+            background: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* --- HERO --- */
+        .contact-hero-bg {
+            background: var(--purple);
+            padding: 150px 0 120px;
+            text-align: center;
+            color: white;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-hero-bg">
+        <div class="container">
+            <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">Get in <span class="text-gold">Touch.</span></h1>
+            <p class="lead opacity-75">We are here to answer any questions about our developments.</p>
+        </div>
+    </div>
+
+    <div class="container info-grid">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="contact-icon-box animate__animated animate__fadeInUp">
+                    <div class="icon-circle"><i class="fas fa-map-marked-alt"></i></div>
+                    <h5 class="fw-bold">Our Location</h5>
+                    <p class="text-muted">House 12, Road 4, Sector 7<br>Uttara, Dhaka 1230</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-icon-box animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="icon-circle"><i class="fas fa-phone-volume"></i></div>
+                    <h5 class="fw-bold">Phone Number</h5>
+                    <p class="text-muted">+880 1711 000 000<br>+880 2 999 000</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-icon-box animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="icon-circle"><i class="fas fa-envelope-open-text"></i></div>
+                    <h5 class="fw-bold">Email Address</h5>
+                    <p class="text-muted">info@domoholdings.com<br>support@domo.bd</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="form-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="glass-form-container">
+                        <h2 class="fw-bold mb-5">Send a <span class="text-gold">Message</span></h2>
+                        <form id="interactiveForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="floating-input">
+                                        <input type="text" id="name" required placeholder=" ">
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="floating-input">
+                                        <input type="email" id="email" required placeholder=" ">
+                                        <label for="email">Email Address</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="floating-input">
+                                        <input type="text" id="subject" required placeholder=" ">
+                                        <label for="subject">Project Interest</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="floating-input">
+                                        <textarea id="message" rows="5" required placeholder=" "></textarea>
+                                        <label for="message">How can we help you?</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-premium">Send Message Now <i class="fas fa-paper-plane ms-2"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="map-card">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.438202951717!2d90.39572437535564!3d23.874078178586884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c416e99646b9%3A0x6a0033c5e88869!2sUttara!5e0!3m2!1sen!2sbd!4v1713600000000!5m2!1sen!2sbd" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5 class="fw-bold">Follow Our Progress</h5>
+                        <div class="social-follow-box">
+                            <a href="#" class="social-pill"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-pill"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-pill"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-pill"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 bg-white border-top">
+        <div class="container text-center">
+            <h3 class="fw-bold text-purple">DOMO.</h3>
+            <p class="text-muted">Creating landmarks, one contact at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form Interaction Logic
+        const form = document.getElementById('interactiveForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.btn-premium');
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
+            
+            setTimeout(() => {
+                btn.style.background = '#28a745';
+                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                form.reset();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
