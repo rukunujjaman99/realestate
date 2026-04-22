@@ -66,12 +66,17 @@ h4,
   padding: 25px 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+z-index:999 ;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background: var(--bg-dark);
+
 }
 .navbar.sticky {
   background: rgba(10, 10, 10, 0.98);
   backdrop-filter: blur(15px);
   padding: 12px 0;
   border-bottom: 1px solid var(--gold);
+  
 }
 .nav-link {
   color: #fff !important;
